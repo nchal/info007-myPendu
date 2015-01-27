@@ -3,15 +3,20 @@ package fr.uds.info007.myPendu.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class MyIHM extends JFrame {
+import fr.uds.info007.myPendu.controller.MyGame;
+
+public class MyIHM extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 7257588482880116636L;
 	
@@ -27,14 +32,17 @@ public class MyIHM extends JFrame {
 	
 	private JPanel mainPanel;
 	
+	private MyGame game;
+	
 	public MyIHM() {
 		super();
+		game = new MyGame();
 		init();
 	}
 
 	private void init() {
 
-		String randomWord = "telephone";
+		String randomWord = game.getMotMystere();
 		
 		this.solution = new ArrayList<JLabel>();
 		
@@ -77,11 +85,13 @@ public class MyIHM extends JFrame {
 		for (JLabel label : solution) {
 			
 			this.solutionPanel.add(label);
+			label.setVisible(false);
 		}
 		
 		for (JButton button : alphabet) {
 			
 			this.alphabetPanel.add(button);
+			button.addActionListener(this);
 		}
 		
 		this.mainPanel.add(solutionPanel,BorderLayout.NORTH);
@@ -91,7 +101,25 @@ public class MyIHM extends JFrame {
 		this.setContentPane(mainPanel);
 		
 	}
-	
+
+	public void actionPerformed(ActionEvent e) {
+
+		Character c = ((JButton)e.getSource()).getText().toCharArray()[0];
+		c = Character.toLowerCase(c);
+		game.playLetter(c);
+		if(game.isGameOver())
+		{
+			JOptionPane.showMessageDialog(null, "Game Over");
+		}
+		
+		for (JLabel label : solution) {
+			
+			if(c.equals(label.getText().toCharArray()[0]))
+			{
+				label.setVisible(true); 
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		

@@ -15,12 +15,14 @@ public class MyGame {
 		nbChance = 0;
 		lettersUsed = new ArrayList<Character>();
 		nbLetterGuess = 0;
+		pickMistery();
+		
 	}
 	
-	public void pickMistery()
+	private void pickMistery()
 	{
 		//TODO : Dictionnaire
-		motMystere = "null";
+		motMystere = "totole";
 	}
 	
 	public void startGame()
@@ -28,7 +30,7 @@ public class MyGame {
 		//TODO : Launch IHM
 	}
 	
-	//A invoqué à chaque choix d'une lettre
+	//A invoquer à chaque choix d'une lettre
 	public void playLetter(Character ch) 
 	{
 		if(lettersUsed.contains(ch))
@@ -37,6 +39,7 @@ public class MyGame {
 			//Mais dans le cas de la voix on peut pas prévoir
 			throw new IllegalArgumentException();
 		}
+		
 		Boolean fault = true;
 		lettersUsed.add(ch);
 		for (int i=0; i<motMystere.length();i++)
@@ -60,7 +63,43 @@ public class MyGame {
 	{
 		return (nbLetterGuess==motMystere.length());
 	}
-	
 
-	
+	public String getMotMystere() {
+		return motMystere;
+	}
+
+	public void setMotMystere(String motMystere) {
+		this.motMystere = motMystere;
+	}
+
+	public int getNbChance() {
+		return nbChance;
+	}
+
+	public void setNbChance(int nbChance) {
+		this.nbChance = nbChance;
+	}
+
+	public List<Character> getLettersUsed() {
+		return lettersUsed;
+	}
+
+	public void setLettersUsed(List<Character> lettersUsed) {
+		this.lettersUsed = lettersUsed;
+	}
+
+	public int getNbLetterGuess() {
+		return nbLetterGuess;
+	}
+
+	public void setNbLetterGuess(int nbLetterGuess) {
+		this.nbLetterGuess = nbLetterGuess;
+	}
+
+	@Override
+	public String toString() {
+		return "MyGame [motMystere=" + motMystere + ", nbChance=" + nbChance
+				+ ", lettersUsed=" + lettersUsed + ", nbLetterGuess="
+				+ nbLetterGuess + "]";
+	}
 }

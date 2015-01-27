@@ -3,19 +3,16 @@ import fr.uds.info007.myPendu.controller.MyGame;
 
 public class Main {
 	
-	public Main()
+	public static void main(String[] args)
 	{
 		//Un test
 		MyGame newGame = new MyGame();
-		newGame.pickMistery();
 		newGame.startGame();
-		newGame.playLetter('n');
-		newGame.playLetter('u');
+		newGame.playLetter('o');
+		newGame.playLetter('e');
 		newGame.playLetter('l');
+		newGame.playLetter('t');
 		System.out.println(newGame.isGameOver());
 		
 	}
-	
-	
-
 }

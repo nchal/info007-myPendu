@@ -6,6 +6,7 @@ import java.util.List;
 
 public class MyGame {
 	
+	private final int LIMITTRY = 7;
 	private String motMystere;
 	private int nbChance;
 	private List<Character> lettersUsed;
@@ -31,7 +32,7 @@ public class MyGame {
 	}
 	
 	//A invoquer à chaque choix d'une lettre
-	public void playLetter(Character ch) 
+	public int playLetter(Character ch) 
 	{
 		if(lettersUsed.contains(ch))
 		{
@@ -55,13 +56,25 @@ public class MyGame {
 		{
 			nbChance++;
 		}
-		
+	return isGameOver();
 	}
 	
 	//A invoquer à chaque lettre jouée
-	public boolean isGameOver()
+	//0 perdu 1 gagné -1 continue
+	public int isGameOver()
 	{
-		return (nbLetterGuess==motMystere.length());
+		if (nbChance>LIMITTRY)
+		{
+			return 0;
+		}
+		else if (nbLetterGuess==motMystere.length())
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 
 	public String getMotMystere() {

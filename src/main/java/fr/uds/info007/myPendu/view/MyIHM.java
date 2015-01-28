@@ -103,13 +103,18 @@ public class MyIHM extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		int fin;
 
 		Character c = ((JButton)e.getSource()).getText().toCharArray()[0];
 		c = Character.toLowerCase(c);
-		game.playLetter(c);
-		if(game.isGameOver())
+		fin = game.playLetter(c);
+		if(fin==1)
 		{
-			JOptionPane.showMessageDialog(null, "Game Over");
+			JOptionPane.showMessageDialog(null, "GG WP NO RE");
+		}
+		else if (fin==0)
+		{
+			JOptionPane.showMessageDialog(null, "Ta perdu NooOb");
 		}
 		
 		for (JLabel label : solution) {

@@ -1,8 +1,15 @@
 package fr.uds.info007.myPendu.controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class MyGame {
 	
@@ -23,12 +30,28 @@ public class MyGame {
 	private void pickMistery()
 	{
 		//TODO : Dictionnaire
-		motMystere = "totole";
-	}
-	
-	public void startGame()
-	{
-		//TODO : Launch IHM
+		//motMystere = "totole";
+		URL path = Thread.currentThread().getContextClassLoader().getResource("dictionnaire.txt");
+		//String path = "/src/main/Resources/dictionnaire.txt";
+		String line;
+		int nbre = (int)(Math.random()*336529);
+		try {
+			BufferedReader buff = new BufferedReader(new FileReader(path.getPath()));
+			try {
+				for(int i=0; i< nbre;i++) {
+					line = buff.readLine();
+				}
+				motMystere=buff.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(motMystere);
+		
 	}
 	
 	//A invoquer à chaque choix d'une lettre

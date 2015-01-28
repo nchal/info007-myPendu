@@ -7,7 +7,6 @@ public class Main {
 	{
 		//Un test
 		MyGame newGame = new MyGame();
-		newGame.startGame();
 		newGame.playLetter('o');
 		newGame.playLetter('e');
 		newGame.playLetter('l');

@@ -1,0 +1,10 @@
+house
+door
+table
+potatoes
+chair
+cascade
+operator
+windows
+wall
+difficult

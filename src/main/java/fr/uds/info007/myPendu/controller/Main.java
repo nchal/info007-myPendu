@@ -1,17 +1,20 @@
 package fr.uds.info007.myPendu.controller;
-import fr.uds.info007.myPendu.controller.MyGame;
+
+import java.util.Scanner;
 
 public class Main {
-	
-	public static void main(String[] args)
-	{
-		//Un test
-		MyGame newGame = new MyGame();
-		newGame.playLetter('o');
-		newGame.playLetter('e');
-		newGame.playLetter('l');
-		newGame.playLetter('t');
-		System.out.println(newGame.isGameOver());
-		
+
+	public static void main(String[] args) {
+
+		GameEngine game = new GameEngine();
+
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println(game.playLetter(sc.nextLine().charAt(0)));
+
+			System.out.println(game);
+
+		}
 	}
+
 }

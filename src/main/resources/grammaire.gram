@@ -1,0 +1,7 @@
+#JSGF V1.0;
+
+grammar grammaire;
+
+public <greet> = ( yolo );
+
+public <animal> = ( chat | chameau | chien | cheval | poisson | requin | baleine | pigeon | singe | sarkozi | hollande | panda | ours | loup | renard | tortue );

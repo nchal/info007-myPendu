@@ -32,7 +32,7 @@ public class HelloWorld {
 	/**
 	 * Main method for running the HelloWorld demo.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException {
 		try {
 			URL url;
 			if (args.length > 0) {
@@ -85,9 +85,6 @@ public class HelloWorld {
 			e.printStackTrace();
 		} catch (PropertyException e) {
 			System.err.println("Problem configuring HelloWorld: " + e);
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			System.err.println("Problem creating HelloWorld: " + e);
 			e.printStackTrace();
 		}
 	}

@@ -1,7 +1,5 @@
 package fr.uds.info007.myPendu.voice;
 
-import java.io.IOException;
-
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
@@ -26,7 +24,7 @@ public class VoiceRecognizer {
 			recognizer.allocate();
 
 			microphone = (Microphone) manager.lookup("microphone");
-		} catch (InstantiationException | PropertyException | IOException e) {
+		} catch (PropertyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

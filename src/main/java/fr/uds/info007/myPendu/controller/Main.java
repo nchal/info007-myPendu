@@ -13,7 +13,6 @@ public class Main {
 			System.out.println(game.playLetter(sc.nextLine().charAt(0)));
 
 			System.out.println(game);
-
 		}
 	}
 

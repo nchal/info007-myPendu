@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,11 +116,18 @@ public class GameFrame extends JFrame implements ActionListener {
 		// char c = ((JButton) e.getSource()).getText().toCharArray()[0];
 		// c = Character.toLowerCase(c);
 
-		String result = recognizer.listen();
-
+		String result = null;
+		while (result == null) {
+			result = recognizer.listen();
+		}
 		int confirm = JOptionPane.showConfirmDialog(null, "Did you say "
 				+ result + " ?");
 
+		if (confirm == JOptionPane.YES_OPTION) {
+			result = result.split(" ")[0];
+		}
+
+		System.out.println(result);
 		// switch (game.playLetter(c)) {
 		// case CONTINU:
 		// break;

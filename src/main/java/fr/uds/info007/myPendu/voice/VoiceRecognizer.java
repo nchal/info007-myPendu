@@ -16,6 +16,8 @@ public class VoiceRecognizer {
 
 	public VoiceRecognizer() {
 
+		System.out.println("Loading...");
+
 		try {
 			manager = new ConfigurationManager(Thread.currentThread()
 					.getContextClassLoader().getResource("game.config.xml"));
@@ -24,26 +26,35 @@ public class VoiceRecognizer {
 			recognizer.allocate();
 
 			microphone = (Microphone) manager.lookup("microphone");
+
 		} catch (PropertyException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Fail Loading...");
 			e.printStackTrace();
 		}
 	}
 
 	public String listen() {
 
-		if (microphone.startRecording()) {
-			Result result = recognizer.recognize();
+		if (!microphone.isRecording()) {
+			microphone.startRecording();
+		}
 
-			if (result != null) {
-				return result.getBestFinalResultNoFiller();
-			} else {
-				return null;
-			}
+		// if (microphone.startRecording()) {
+		Result result = recognizer.recognize();
 
+		if (result != null) {
+			microphone.stopRecording();
+			return result.getBestFinalResultNoFiller();
 		} else {
+			System.out.println("I can't hear what you said.\n");
+			microphone.stopRecording();
 			return null;
 		}
+
+		// } else {
+		// System.out.println("Cannot start microphone.");
+		// return null;
+		// }
 
 	}
 }

@@ -39,7 +39,7 @@ public class HelloWorld {
 				url = new File(args[0]).toURI().toURL();
 			} else {
 				url = Thread.currentThread().getContextClassLoader()
-						.getResource("config.xml");
+						.getResource("game.config.xml");
 			}
 
 			System.out.println("Loading...");

@@ -26,6 +26,7 @@ public class VoiceRecognizer {
 			recognizer.allocate();
 
 			microphone = (Microphone) manager.lookup("microphone");
+			microphone.startRecording();
 
 		} catch (PropertyException e) {
 			System.out.println("Fail Loading...");
@@ -35,26 +36,14 @@ public class VoiceRecognizer {
 
 	public String listen() {
 
-		if (!microphone.isRecording()) {
-			microphone.startRecording();
-		}
-
-		// if (microphone.startRecording()) {
 		Result result = recognizer.recognize();
 
 		if (result != null) {
-			microphone.stopRecording();
 			return result.getBestFinalResultNoFiller();
 		} else {
 			System.out.println("I can't hear what you said.\n");
-			microphone.stopRecording();
 			return null;
 		}
-
-		// } else {
-		// System.out.println("Cannot start microphone.");
-		// return null;
-		// }
 
 	}
 }

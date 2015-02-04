@@ -6,12 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.Normalizer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
 
-	private final int LIMIT_TRY = 7;
+	private final int LIMIT_TRY = 6;
 
 	private String secretWord;
 
@@ -36,11 +37,11 @@ public class GameEngine {
 
 	private void pickMistery() {
 
-		int pickedLine = (int) (Math.random() * 10);
+		int pickedLine = (int) (Math.random() * 336531);
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(
 				new File(Thread.currentThread().getContextClassLoader()
-						.getResource("dictionnaire_en.txt").toURI())))) {
+						.getResource("dictionnaire.txt").toURI())))) {
 
 			int i = 0;
 			while (i != pickedLine) {
@@ -93,22 +94,24 @@ public class GameEngine {
 			}
 
 			currentWord = builder.toString();
-			return isGameOver();
+			return isGameOver(letterPlay);
 
 		} else {
 
 			tries++;
 			lettersThrown += letterPlay;
-			return isGameOver();
+			return isGameOver(letterPlay);
 		}
 	}
 
-	private ReturnType isGameOver() {
+	private ReturnType isGameOver(char letterPlay) {
 
 		if (tries > LIMIT_TRY) {
 			return ReturnType.MAX_TRY_LIMIT;
 		} else if (currentWord.equals(secretWord)) {
 			return ReturnType.WIN;
+		} else if (lettersThrown.contains(String.valueOf(letterPlay))) {
+			return ReturnType.FAIL;
 		} else {
 			return ReturnType.CONTINU;
 		}
